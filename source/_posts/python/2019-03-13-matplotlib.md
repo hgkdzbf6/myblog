@@ -24,6 +24,7 @@ plt.plot(x, y)
 plt.show()  # You must call plt.show() to make graphics appear.
 {% endcodeblock %}
 
+<!-- more -->
 添加图例和标题
 {% codeblock lang:python %}
 import numpy as np

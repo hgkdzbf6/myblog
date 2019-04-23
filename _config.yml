@@ -30,7 +30,7 @@ skip_render:
 
 # Writing
 new_post_name: :year-:month-:day-:title.md # File name of new posts
-default_layout: post
+default_layout: cv
 titlecase: false # Transform title into titlecase
 external_link: true # Open external links in new tab
 filename_case: 0
@@ -73,7 +73,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme:  freemind
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
@@ -82,3 +82,8 @@ deploy:
   repo: https://github.com/hgkdzbf6/hgkdzbf6.github.io/ #https://bitbucket.org/JohnSmith/johnsmith.bitbucket.io
   branch: master #published
   message: "daily update"
+
+# 重复运行下面这几项，就能够解决问题
+# npm install hexo-renderer-ejs --save
+# npm install hexo-renderer-stylus --save
+# npm install hexo-renderer-marked --save

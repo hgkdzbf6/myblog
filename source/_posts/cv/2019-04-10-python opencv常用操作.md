@@ -5,9 +5,13 @@ date:   2019-04-10 08:55:05 +0800
 categories: cv
 ---
 
-<script type="text/javascript" async
-  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+
+ <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
 </script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script> 
 
 ## 主要是博客的整理
 
@@ -39,6 +43,7 @@ def readAll(dirname, filter = {}):
 
 很头疼的一点是他们之间怎么转换，转换关系如下所示：
 
+<!-- more -->
 #### cv2转PIL.Image
 
 {% codeblock lang:python %}

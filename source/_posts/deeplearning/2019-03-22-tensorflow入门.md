@@ -20,6 +20,7 @@ writer.close()
 
 ### checkpoint的保存：
 
+<!-- more -->
 {% codeblock lang:python %}
 
 ckpt = tf.train.get_checkpoint_state(checkpoint_dir)
