@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>web RTC</title>
+
+</head>
+
+<body>
+    <canvas id="circle" style="
+        float: left;
+        position: fixed;
+        vertical-align: middle;
+        top: 10%;
+        left: 19%;
+        width: 100%;"></canvas>
+    <div class="display" width="100%">
+        <video id="video" width="100%" autoplay playsinline></video>
+    </div>
+    <div class="hello">
+        <button id="zoom_in">放大</button>
+        <button id="zoom_out">缩小</button>
+        <button id="snap">拍照</button></div>
+    <canvas id="canvas" width="640" height="480"></canvas>
+
+    <script type="text/javascript">
+        // Grab elements, create settings, etc.
+        var video = document.getElementById('video');
+
+        if (!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
+            console.log("这个我也不知道是什么东西qwq")
+        }
+
+        // Get access to the camera!
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            // Not adding `{ audio: true }` since we only want video now
+            navigator.mediaDevices.getUserMedia({
+                video:
+                {
+                    facingMode: 'environment',    
+                    width: {
+                        ideal: 1024,
+                        // min: 1024,
+                        // max: 1920
+                    },
+                    height: {
+                        ideal: 768,
+                        // min: 776,
+                        // max: 1080
+                    }
+                }
+            }).then(function (stream) {
+                //video.src = window.URL.createObjectURL(stream);
+                video.srcObject = stream;
+                video.play();
+            });
+        }
+        // Elements for taking the snapshot
+        var canvas = document.getElementById('canvas');
+        var circle = document.getElementById('circle');
+        var context = canvas.getContext('2d');
+        var video = document.getElementById('video');
+        // Trigger photo take
+        document.getElementById("snap").addEventListener("click", function () {
+            context.drawImage(video, 0, 0, 640, 480);
+        });
+        document.getElementById("zoom_in").addEventListener("click", function () {
+            clearCanvas("circle")
+            var width = document.body.clientWidth;
+            ratio = ratio - 1
+            var ctx = circle.getContext('2d');        
+            ctx.fillStyle='#FF0000';
+            ctx.beginPath();
+            ctx.arc(100, 75, width/ratio, 0, 2 * Math.PI);
+            ctx.stroke();
+        });
+        document.getElementById("zoom_out").addEventListener("click", function () {
+            clearCanvas("circle")
+            ratio = ratio + 1
+            var width = document.body.clientWidth;
+            var ctx = circle.getContext('2d');        
+            ctx.fillStyle='#FF0000';
+            ctx.beginPath();
+            ctx.arc(100, 75, width/ratio, 0, 2 * Math.PI);
+            ctx.stroke();
+        });            
+        var ratio = 20;
+        var width = document.body.clientWidth;
+        var ctx = circle.getContext('2d');
+        ctx.fillStyle='#FF0000';
+        ctx.beginPath();
+        ctx.arc(100, 75, width/ratio, 0, 2 * Math.PI);
+        ctx.stroke();
+
+        function clearCanvas(name)
+        {
+            var c=document.getElementById(name);
+            var cxt=c.getContext("2d");        
+            ctx.fillStyle='#FF0000';
+            cxt.clearRect(0,0,c.width,c.height);
+        }
+
+
+    </script>
+</body>
+
+</html>
